@@ -22,7 +22,11 @@ async function run() {
 
         //GET API
         app.get('/applicantCollection', async (req, res) => {
-            const cursor = applicantCollection.find({});
+            const email = req.query.email;
+            const query = { email: email };
+            console.log(query);
+            const cursor = applicantCollection.find(query);
+            // const cursor = applicantCollection.find({});
             const users = await cursor.toArray();
             res.send(users);
         });
